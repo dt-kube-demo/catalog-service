@@ -14,7 +14,7 @@ public class Item {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private String id;
 
 	@Column(nullable = false)
 	private String name;
@@ -24,7 +24,7 @@ public class Item {
 
 	public Item() {
 		super();
-		id = 0l;
+		//id = "0";
 	}
 
 	public Item(String name, double price) {
@@ -49,11 +49,11 @@ public class Item {
 		this.price = price;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
