@@ -27,6 +27,16 @@ public class CatalogApp {
 		itemRepository.save(new Item("iPod touch", 21.0));
 		itemRepository.save(new Item("iPod nano", 1.0));
 		itemRepository.save(new Item("Apple TV", 100.0));
+		itemRepository.save(new Item("iPad Pro", 500.0));
+		itemRepository.save(new Item("iPad Air", 400.0));
+		itemRepository.save(new Item("iPad Mini", 300.0));
+		itemRepository.save(new Item("iPhone X", 1000.0));
+		itemRepository.save(new Item("iPhone 8", 800.0));
+		itemRepository.save(new Item("Mac Pro", 2000.0));
+		itemRepository.save(new Item("Mac Air", 1200.0));
+		itemRepository.save(new Item("Mac Mini", 1000.0));
+		itemRepository.save(new Item("Apple Watch", 500.0));
+		itemRepository.save(new Item("iMac", 2000.0));
 	}
 
 	public static void main(String[] args) {
