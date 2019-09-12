@@ -1,5 +1,7 @@
 package com.ewolff.microservice.catalog.web;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -23,7 +25,7 @@ public class CatalogController {
 	}
 
 	@RequestMapping(value = "/{id}.html", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-	public ModelAndView Item(@PathVariable("id") long id) {
+	public ModelAndView Item(@PathVariable("id") String id) {
 		return new ModelAndView("item", "item", itemRepository.findById(id).get());
 	}
 
@@ -39,13 +41,16 @@ public class CatalogController {
 
 	@RequestMapping(value = "/form.html", method = RequestMethod.POST)
 	public ModelAndView post(Item Item) {
+		Item.setId(UUID.randomUUID().toString());
 		Item = itemRepository.save(Item);
 		return new ModelAndView("success");
 	}
 
 	@RequestMapping(value = "/{id}.html", method = RequestMethod.PUT)
-	public ModelAndView put(@PathVariable("id") long id, Item item) {
-		item.setId(id);
+	public ModelAndView put(@PathVariable("id") String id, Item item) {
+		if(id == null || id.equalsIgnoreCase("null")) {
+			item.setId(UUID.randomUUID().toString());
+		}
 		itemRepository.save(item);
 		return new ModelAndView("success");
 	}
@@ -62,7 +67,7 @@ public class CatalogController {
 	}
 
 	@RequestMapping(value = "/{id}.html", method = RequestMethod.DELETE)
-	public ModelAndView delete(@PathVariable("id") long id) {
+	public ModelAndView delete(@PathVariable("id") String id) {
 		itemRepository.deleteById(id);
 		return new ModelAndView("success");
 	}
